@@ -1,0 +1,7 @@
+.DS_Store
+feedbackapp
+feedbackapp-*.htpasswd
+bindata.go
+feedbackapp-linux-amd64
+feedbackapp.db
+feedbackapp-settings.json

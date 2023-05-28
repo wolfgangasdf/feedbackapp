@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+    <meta name="theme-color" content="white"/>
+    <title>feedbackapp</title>
+    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <noscript>Need JavaScript!</noscript>
+    Add tag (alphanumeric):<br>
+    <form action="/admin/add" name="submitForm" id="submitForm" method="post">
+        <label>tag: <input type="text" id="newTag" name="newTag"></label>
+        <input type="submit" value="Submit" class="" autocapitalize="none">
+    </form>
+    <br>
+    Existing tags:<br>
+    <ul>
+        {{range .Tags}}
+            <li>[{{.Name}}]&nbsp;
+                <a href="/t/{{.Name}}" class="abutt" target="_blank">submit</a>
+                <a class="abutt" href="#" onclick="location.href=window.location.origin+'/qrx?link=' + encodeURIComponent(window.location.origin + '/t/{{.Name}}');return false;">qr submit</a>
+                <a href="/feedback.html?t={{.Name}}&p={{.Password}}" class="abutt" target="_blank">feedback</a>
+                <a href="/admin/rm/{{.Name}}" onclick="return confirm('Really delete tag and all posts [{{.Name}}]?')" class="abutt">rm</a>
+                <a class="abutt" href="#" onclick="location.href=window.location.origin+'/qrx?link=' + encodeURIComponent(window.location.origin + '/feedback.html?t={{.Name}}&p={{.Password}}');return false;">qr feedback</a>
+            </li>
+        {{end}}    
+    </ul>
+    <div id="footer">
+        <a href="https://github.com/wolfgangasdf/feedbackapp" target="_blank">feedbackapp</a>
+    </div>
+</body>
+</html>
